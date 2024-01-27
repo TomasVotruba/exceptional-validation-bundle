@@ -6,7 +6,7 @@ namespace PhPhD\ExceptionalValidation\Assembler\Property;
 
 use ArrayIterator;
 use PhPhD\ExceptionalValidation\Assembler\CaptureList\CaptureListAssembler;
-use PhPhD\ExceptionalValidation\Assembler\Object\CapturableObjectAssemblerEnvelope;
+use PhPhD\ExceptionalValidation\Assembler\CaptureList\CaptureListAssemblerEnvelope;
 use PhPhD\ExceptionalValidation\Model\Tree\CapturableProperty;
 use ReflectionProperty;
 
@@ -18,10 +18,10 @@ final class CapturablePropertiesViaReflectionAssembler implements CapturableProp
     ) {
     }
 
-    public function assembleProperties(CapturableObjectAssemblerEnvelope $objectEnvelope): iterable
+    public function assembleProperties(CapturablePropertiesAssemblerEnvelope $envelope): iterable
     {
-        $reflectionClass = $objectEnvelope->getReflectionClass();
-        $captureObject = $objectEnvelope->getCaptureObject();
+        $reflectionClass = $envelope->getReflectionClass();
+        $captureObject = $envelope->getCaptureObject();
 
         foreach ($reflectionClass->getProperties() as $reflectionProperty) {
             $name = $reflectionProperty->getName();
@@ -29,7 +29,7 @@ final class CapturablePropertiesViaReflectionAssembler implements CapturableProp
 
             $captureList = new ArrayIterator();
             $property = new CapturableProperty($captureObject, $name, $value, $captureList);
-            $propertyEnvelope = new CapturablePropertyAssemblerEnvelope($property, $reflectionProperty);
+            $propertyEnvelope = new CaptureListAssemblerEnvelope($property, $reflectionProperty);
 
             foreach ($this->captureListAssembler->assembleCaptureItems($propertyEnvelope) as $item) {
                 $captureList->append($item);
@@ -46,11 +46,9 @@ final class CapturablePropertiesViaReflectionAssembler implements CapturableProp
     private function getPropertyValue(object $message, ReflectionProperty $property): mixed
     {
         if (!$property->isInitialized($message)) {
-            $propertyValue = null;
-        } else {
-            $propertyValue = $property->getValue($message);
+            return null;
         }
 
-        return $propertyValue;
+        return $property->getValue($message);
     }
 }

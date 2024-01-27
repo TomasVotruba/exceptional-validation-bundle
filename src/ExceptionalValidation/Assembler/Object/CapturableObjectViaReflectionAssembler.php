@@ -6,15 +6,17 @@ namespace PhPhD\ExceptionalValidation\Assembler\Object;
 
 use ArrayIterator;
 use PhPhD\ExceptionalValidation;
+use PhPhD\ExceptionalValidation\Assembler\CaptureTreeAssembler;
 use PhPhD\ExceptionalValidation\Assembler\Property\CapturablePropertiesAssembler;
-use PhPhD\ExceptionalValidation\CaptureTreeAssembler;
+use PhPhD\ExceptionalValidation\Assembler\Property\CapturablePropertiesAssemblerEnvelope;
 use PhPhD\ExceptionalValidation\Model\Tree\CapturableObject;
 use PhPhD\ExceptionalValidation\Model\Tree\CapturableProperty;
-use ReflectionAttribute;
 use ReflectionClass;
 
+use function count;
+
 /** @internal */
-final class CapturableObjectViaReflectionTreeAssembler implements CapturableObjectAssembler, CaptureTreeAssembler
+final class CapturableObjectViaReflectionAssembler implements CapturableObjectAssembler, CaptureTreeAssembler
 {
     public function __construct(
         private CapturablePropertiesAssembler $propertiesAssembler,
@@ -25,13 +27,13 @@ final class CapturableObjectViaReflectionTreeAssembler implements CapturableObje
     {
         $reflectionClass = new ReflectionClass($message);
 
-        if ([] === $reflectionClass->getAttributes(ExceptionalValidation::class, ReflectionAttribute::IS_INSTANCEOF)) {
+        if ([] === $reflectionClass->getAttributes(ExceptionalValidation::class)) {
             return null;
         }
 
         $capturableProperties = new ArrayIterator();
         $capturableObject = new CapturableObject($message, $parent?->getCaptureList(), $capturableProperties);
-        $envelope = new CapturableObjectAssemblerEnvelope($capturableObject, $reflectionClass);
+        $envelope = new CapturablePropertiesAssemblerEnvelope($capturableObject, $reflectionClass);
 
         foreach ($this->propertiesAssembler->assembleProperties($envelope) as $property) {
             $capturableProperties->append($property);

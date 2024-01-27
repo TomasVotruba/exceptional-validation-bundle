@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace PhPhD\ExceptionalValidation\Assembler\Property;
+namespace PhPhD\ExceptionalValidation\Assembler\CaptureList;
 
 use PhPhD\ExceptionalValidation\Model\Tree\CapturableProperty;
 use ReflectionProperty;
 
 /** @internal */
-final class CapturablePropertyAssemblerEnvelope
+final class CaptureListAssemblerEnvelope
 {
     public function __construct(
         private CapturableProperty $capturableProperty,

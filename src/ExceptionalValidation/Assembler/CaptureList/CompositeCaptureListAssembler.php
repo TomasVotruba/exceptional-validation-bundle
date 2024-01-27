@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace PhPhD\ExceptionalValidation\Assembler\CaptureList;
 
-use PhPhD\ExceptionalValidation\Assembler\Property\CapturablePropertyAssemblerEnvelope;
-
 /** @internal */
 final class CompositeCaptureListAssembler implements CaptureListAssembler
 {
@@ -15,10 +13,10 @@ final class CompositeCaptureListAssembler implements CaptureListAssembler
     ) {
     }
 
-    public function assembleCaptureItems(CapturablePropertyAssemblerEnvelope $propertyEnvelope): iterable
+    public function assembleCaptureItems(CaptureListAssemblerEnvelope $envelope): iterable
     {
-        foreach ($this->captureListAssemblers as $itemsAssembler) {
-            yield from $itemsAssembler->assembleCaptureItems($propertyEnvelope);
+        foreach ($this->captureListAssemblers as $captureListAssembler) {
+            yield from $captureListAssembler->assembleCaptureItems($envelope);
         }
     }
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PhPhD\ExceptionalValidation;
+namespace PhPhD\ExceptionalValidation\Assembler;
 
-use PhPhD\ExceptionalValidation\Model\CaptureTree;
+use PhPhD\ExceptionalValidation\Model\Tree\CaptureTree;
 
 interface CaptureTreeAssembler
 {

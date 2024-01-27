@@ -8,6 +8,7 @@ use LogicException;
 use PhPhD\ExceptionalValidation\Model\Tree\CaptureItem;
 use Throwable;
 
+/** @api */
 final class CaughtException
 {
     public function __construct(

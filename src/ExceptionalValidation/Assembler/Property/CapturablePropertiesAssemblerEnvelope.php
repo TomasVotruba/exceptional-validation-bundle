@@ -2,14 +2,19 @@
 
 declare(strict_types=1);
 
-namespace PhPhD\ExceptionalValidation\Assembler\Object;
+namespace PhPhD\ExceptionalValidation\Assembler\Property;
 
 use PhPhD\ExceptionalValidation\Model\Tree\CapturableObject;
 use ReflectionClass;
 
-/** @internal */
-final class CapturableObjectAssemblerEnvelope
+/**
+ * @internal
+ *
+ * @template T of object
+ */
+final class CapturablePropertiesAssemblerEnvelope
 {
+    /** @param ReflectionClass<T> $reflectionClass */
     public function __construct(
         private CapturableObject $captureObject,
         private ReflectionClass $reflectionClass,
@@ -21,7 +26,11 @@ final class CapturableObjectAssemblerEnvelope
         return $this->captureObject;
     }
 
-    /** @internal */
+    /**
+     * @internal
+     *
+     * @return ReflectionClass<T>
+     */
     public function getReflectionClass(): ReflectionClass
     {
         return $this->reflectionClass;

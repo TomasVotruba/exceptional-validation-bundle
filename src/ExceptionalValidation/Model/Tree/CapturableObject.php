@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace PhPhD\ExceptionalValidation\Model\Tree;
 
-use PhPhD\ExceptionalValidation\Model\CaptureTree;
 use PhPhD\ExceptionalValidation\Model\CaughtException;
 use PhPhD\ExceptionalValidation\Model\PropertyPath;
 use Throwable;
 
+/** @api */
 final class CapturableObject implements CaptureTree
 {
     public function __construct(
@@ -21,8 +21,8 @@ final class CapturableObject implements CaptureTree
 
     public function capture(Throwable $exception): ?CaughtException
     {
-        foreach ($this->captureProperties as $property) {
-            if ($hit = $property->capture($exception)) {
+        foreach ($this->captureProperties as $captureProperty) {
+            if (null !== ($hit = $captureProperty->capture($exception))) {
                 return $hit;
             }
         }

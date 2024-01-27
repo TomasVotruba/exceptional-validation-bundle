@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace PhPhD\ExceptionalValidation\Model;
 
+use function implode;
+
 final class PropertyPath
 {
     public function __construct(
-        /** @var non-empty-list<string> */
+        /** @var list<string> */
         private array $items,
     ) {
     }

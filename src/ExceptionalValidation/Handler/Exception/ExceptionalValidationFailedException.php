@@ -8,17 +8,15 @@ use RuntimeException;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Throwable;
 
+use function sprintf;
+
 final class ExceptionalValidationFailedException extends RuntimeException
 {
-    private object $violatingMessage;
-
-    private ConstraintViolationListInterface $violations;
-
-    public function __construct(object $violatingMessage, ConstraintViolationListInterface $violations, Throwable $previous)
-    {
-        $this->violatingMessage = $violatingMessage;
-        $this->violations = $violations;
-
+    public function __construct(
+        private object $violatingMessage,
+        private ConstraintViolationListInterface $violations,
+        Throwable $previous,
+    ) {
         parent::__construct(
             sprintf('Message of type "%s" has failed exceptional validation.', $this->violatingMessage::class),
             previous: $previous,

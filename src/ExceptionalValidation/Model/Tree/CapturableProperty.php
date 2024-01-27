@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace PhPhD\ExceptionalValidation\Model\Tree;
 
-use PhPhD\ExceptionalValidation\Model\CaptureTree;
 use PhPhD\ExceptionalValidation\Model\CaughtException;
 use PhPhD\ExceptionalValidation\Model\PropertyPath;
 use Throwable;
 
+/** @api */
 final class CapturableProperty implements CaptureTree
 {
     private PropertyCaptureList $captureList;
 
+    /** @param iterable<CaptureTree> $captures */
     public function __construct(
         private CapturableObject $parent,
         private string $name,

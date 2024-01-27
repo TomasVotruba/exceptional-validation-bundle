@@ -8,10 +8,10 @@ use Attribute;
 use Exception;
 use Throwable;
 
-/** @readonly */
 #[Attribute(Attribute::TARGET_PROPERTY | Attribute::IS_REPEATABLE)]
 final class Capture
 {
+    /** @api */
     public function __construct(
         /** @var class-string<Exception> */
         private string $exception,

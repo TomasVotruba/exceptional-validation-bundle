@@ -2,20 +2,36 @@ services:
     phd_exceptional_validation:
         class: PhPhD\ExceptionalValidationBundle\Messenger\ExceptionalValidationMiddleware
         arguments:
-            - '@phd_exceptional_validation.handler'
+            - '@phd_exceptional_validation.exception_handler'
 
-    phd_exceptional_validation.handler:
-        class: PhPhD\ExceptionalValidation\Handler\ExceptionHandler
-        arguments:
-            - '@phd_exceptional_validation.exception_capturer'
-
-    phd_exceptional_validation.exception_capturer:
-        class: PhPhD\ExceptionalValidation\Capturer\CaptureTreeExceptionCapturer
+    phd_exceptional_validation.exception_handler:
+        class: PhPhD\ExceptionalValidation\Handler\ExceptionalHandler
         arguments:
             - '@phd_exceptional_validation.capture_tree_assembler'
+            - '@phd_exceptional_validation.violations_list_formatter'
+        lazy: true
+        tags:
+            - { name: 'proxy', interface: 'PhPhD\ExceptionalValidation\Handler\ExceptionHandler' }
 
     phd_exceptional_validation.capture_tree_assembler:
-        class: PhPhD\ExceptionalValidation\Assembler\Object\CapturableObjectViaReflectionTreeAssembler
+        alias: phd_exceptional_validation.capturable_object_assembler
+
+    phd_exceptional_validation.violations_list_formatter:
+        class: PhPhD\ExceptionalValidation\Formatter\ExceptionalViolationsListFormatter
+        arguments:
+            - '@phd_exceptional_validation.violation_formatter'
+        lazy: true
+        tags:
+            - { name: 'proxy', interface: 'PhPhD\ExceptionalValidation\Formatter\ExceptionViolationsListFormatter' }
+
+    phd_exceptional_validation.violation_formatter:
+        class: PhPhD\ExceptionalValidation\Formatter\ExceptionalViolationFormatter
+        arguments:
+            - '@translator'
+            - '%validator.translation_domain%'
+
+    phd_exceptional_validation.capturable_object_assembler:
+        class: PhPhD\ExceptionalValidation\Assembler\Object\CapturableObjectViaReflectionAssembler
         arguments:
             - '@phd_exceptional_validation.capturable_properties_assembler'
 
@@ -27,4 +43,24 @@ services:
     phd_exceptional_validation.capture_list_assembler:
         class: PhPhD\ExceptionalValidation\Assembler\CaptureList\CompositeCaptureListAssembler
         arguments:
-            - !tagged_iterator phd_exceptional_validation.capture_list_assembler
+            -   - '@phd_exceptional_validation.capture_list_assembler.captures'
+                - '@phd_exceptional_validation.capture_list_assembler.nested_object'
+
+    phd_exceptional_validation.capture_list_assembler.captures:
+        class: PhPhD\ExceptionalValidation\Assembler\CaptureList\CapturesListViaReflectionAssembler
+
+    phd_exceptional_validation.capture_list_assembler.nested_object:
+        class: PhPhD\ExceptionalValidation\Assembler\CaptureList\NestedCapturableObjectViaReflectionAssembler
+        arguments:
+            - '@phd_exceptional_validation.capturable_object_assembler'
+        lazy: true
+        tags:
+            - { name: 'proxy', interface: 'PhPhD\ExceptionalValidation\Assembler\CaptureList\CaptureListAssembler' }
+
+when@test:
+    parameters:
+        validator.translation_domain: test
+
+    services:
+        translator:
+            class: stdClass

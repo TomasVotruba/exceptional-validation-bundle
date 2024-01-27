@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace PhPhD\ExceptionalValidationBundle\Messenger;
 
 use Exception;
+use PhPhD\ExceptionalValidation;
 use PhPhD\ExceptionalValidation\Handler\ExceptionHandler;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Middleware\MiddlewareInterface;
 use Symfony\Component\Messenger\Middleware\StackInterface;
 use Throwable;
 
-/** @readonly */
+/** @api */
 final class ExceptionalValidationMiddleware implements MiddlewareInterface
 {
     public function __construct(

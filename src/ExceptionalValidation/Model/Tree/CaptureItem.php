@@ -4,25 +4,24 @@ declare(strict_types=1);
 
 namespace PhPhD\ExceptionalValidation\Model\Tree;
 
-use PhPhD\ExceptionalValidation\Capture;
-use PhPhD\ExceptionalValidation\Model\CaptureTree;
 use PhPhD\ExceptionalValidation\Model\CaughtException;
 use PhPhD\ExceptionalValidation\Model\PropertyPath;
 use Throwable;
 
+/** @api */
 final class CaptureItem implements CaptureTree
 {
+    /** @param class-string<Throwable> $exceptionClass */
     public function __construct(
         private PropertyCaptureList $parent,
-        private Capture $capture,
+        private string $exceptionClass,
+        private string $message,
     ) {
     }
 
     public function capture(Throwable $exception): ?CaughtException
     {
-        $exceptionClass = $this->capture->getExceptionClass();
-
-        if (!$exception instanceof $exceptionClass) {
+        if (!$exception instanceof $this->exceptionClass) {
             return null;
         }
 
@@ -41,7 +40,7 @@ final class CaptureItem implements CaptureTree
 
     public function getMessage(): string
     {
-        return $this->capture->getMessage();
+        return $this->message;
     }
 
     public function getValue(): mixed
@@ -62,6 +61,6 @@ final class CaptureItem implements CaptureTree
     /** @return class-string<Throwable> */
     public function getExceptionClass(): string
     {
-        return $this->capture->getExceptionClass();
+        return $this->exceptionClass;
     }
 }
