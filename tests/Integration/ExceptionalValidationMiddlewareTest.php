@@ -7,6 +7,7 @@ namespace PhPhD\ExceptionalValidationBundle\Tests;
 use PhPhD\ExceptionalValidation\Tests\Stub\Exception\PropertyCapturableException;
 use PhPhD\ExceptionalValidation\Tests\Stub\HandleableMessageStub;
 use PhPhD\ExceptionalValidationBundle\Messenger\ExceptionalValidationMiddleware;
+use PHPUnit\Framework\MockObject\MockObject;
 use stdClass;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
@@ -23,7 +24,7 @@ final class ExceptionalValidationMiddlewareTest extends TestCase
 {
     private ExceptionalValidationMiddleware $middleware;
 
-    private \PHPUnit\Framework\MockObject\MockObject $nextMiddleware;
+    private MockObject $nextMiddleware;
 
     private StackMiddleware $stack;
 
