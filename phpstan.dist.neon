@@ -21,6 +21,8 @@ parameters:
         - 'php'
     phpat:
         ignore_built_in_classes: true
+#    bootstrapFiles:
+#        - tests/autoload_dev.php
 
 services:
     -

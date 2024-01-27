@@ -25,8 +25,7 @@
         "psalm/plugin-phpunit": "^0.18.4",
         "nyholm/symfony-bundle-test": "^3.0",
         "phpstan/phpstan": "^1.10",
-        "phpat/phpat": "^0.10.13",
-        "phpunit/phpunit": "^10.5"
+        "phpat/phpat": "^0.10.13"
     },
     "repositories": [
         {
@@ -46,6 +45,9 @@
         }
     },
     "autoload-dev": {
+        "files": [
+            "tests/autoload_dev.php"
+        ],
         "classmap": [
             "tests/ArchitectureRuleSet.php"
         ],
@@ -65,12 +67,12 @@
         ],
         "ci:ecs": "vendor/bin/ecs check",
         "ci:ecs-fix": "vendor/bin/ecs check --fix",
-        "ci:rector": "vendor/bin/rector process --dry-run",
+        "ci:rector": "vendor/bin/rector process --dry-run --clear-cache -vvv",
         "ci:rector-fix": "vendor/bin/rector process",
         "ci:phpstan": "vendor/bin/phpstan analyze ./",
         "ci:psalm": "vendor/bin/psalm",
-        "ci:test": "vendor/bin/phpunit --testdox --colors=always",
-        "ci:unit-test": "vendor/bin/phpunit --testdox --colors=always --testsuite=Unit",
-        "ci:integration-test": "vendor/bin/phpunit --testdox --colors=always --testsuite=Integration"
+        "ci:test": "bin/phpunit.phar --testdox --colors=always",
+        "ci:unit-test": "bin/phpunit.phar --testdox --colors=always --testsuite=Unit",
+        "ci:integration-test": "bin/phpunit.phar --testdox --colors=always --testsuite=Integration"
     }
 }

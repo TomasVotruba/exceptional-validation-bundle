@@ -15,9 +15,12 @@ use Throwable;
 /** @api */
 final class ExceptionalValidationMiddleware implements MiddlewareInterface
 {
+    private ExceptionHandler $exceptionHandler;
+
     public function __construct(
-        private ExceptionHandler $exceptionHandler,
+        ExceptionHandler $exceptionHandler,
     ) {
+        $this->exceptionHandler = $exceptionHandler;
     }
 
     /** @throws Throwable */

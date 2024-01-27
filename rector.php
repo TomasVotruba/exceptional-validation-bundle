@@ -8,6 +8,8 @@ use Rector\ValueObject\PhpVersion;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([__DIR__.'/']);
+    $rectorConfig->skip([__DIR__.'/bin']);
+
     $rectorConfig->skip([__DIR__.'/vendor']);
     $rectorConfig->skip([__DIR__.'/tests/*/Stub/*']);
 
