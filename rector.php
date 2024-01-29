@@ -14,5 +14,5 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->skip([__DIR__.'/tests/*/Stub/*']);
 
     $rectorConfig->sets([PhdSetList::rector()->getPath()]);
-    $rectorConfig->phpVersion(PhpVersion::PHP_80);
+    $rectorConfig->phpVersion(PhpVersion::PHP_81);
 };

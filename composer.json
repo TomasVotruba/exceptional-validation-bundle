@@ -11,8 +11,8 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=8.0.2",
-        "symfony/dependency-injection": "^6.0 | ^7.0",
+        "php": ">=8.1",
+        "symfony/dependency-injection": "^6.2 | ^7.0",
         "symfony/http-kernel": "^6.0 | ^7.0",
         "symfony/messenger": "^6.0 | ^7.0",
         "symfony/validator": "^6.0 | ^7.0"
@@ -25,7 +25,8 @@
         "psalm/plugin-phpunit": "^0.18.4",
         "nyholm/symfony-bundle-test": "^3.0",
         "phpstan/phpstan": "^1.10",
-        "phpat/phpat": "^0.10.13"
+        "phpat/phpat": "^0.10.13",
+        "vimeo/psalm": "^5.7"
     },
     "repositories": [
         {
