@@ -13,7 +13,7 @@ use function is_object;
 final class NestedCapturableObjectViaReflectionAssembler implements CaptureListAssembler
 {
     public function __construct(
-        private CapturableObjectAssembler $objectTreeAssembler,
+        private readonly CapturableObjectAssembler $objectTreeAssembler,
     ) {
     }
 

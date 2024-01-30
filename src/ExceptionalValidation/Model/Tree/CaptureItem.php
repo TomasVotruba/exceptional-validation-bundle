@@ -13,9 +13,9 @@ final class CaptureItem implements CaptureTree
 {
     /** @param class-string<Throwable> $exceptionClass */
     public function __construct(
-        private PropertyCaptureList $parent,
-        private string $exceptionClass,
-        private string $message,
+        private readonly PropertyCaptureList $parent,
+        private readonly string $exceptionClass,
+        private readonly string $message,
     ) {
     }
 

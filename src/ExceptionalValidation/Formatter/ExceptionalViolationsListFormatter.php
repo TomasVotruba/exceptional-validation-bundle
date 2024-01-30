@@ -11,7 +11,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 final class ExceptionalViolationsListFormatter implements ExceptionViolationsListFormatter
 {
     public function __construct(
-        private ExceptionViolationFormatter $violationFormatter,
+        private readonly ExceptionViolationFormatter $violationFormatter,
     ) {
     }
 

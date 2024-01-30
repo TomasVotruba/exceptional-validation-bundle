@@ -12,8 +12,8 @@ use Throwable;
 final class ExceptionalHandler implements ExceptionHandler
 {
     public function __construct(
-        private CaptureTreeAssembler $captureTreeAssembler,
-        private ExceptionViolationsListFormatter $violationsFormatter,
+        private readonly CaptureTreeAssembler $captureTreeAssembler,
+        private readonly ExceptionViolationsListFormatter $violationsFormatter,
     ) {
     }
 

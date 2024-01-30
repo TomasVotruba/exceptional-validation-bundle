@@ -14,8 +14,8 @@ final class Capture
 {
     public function __construct(
         /** @var class-string<Exception> */
-        private string $exception,
-        private string $message,
+        private readonly string $exception,
+        private readonly string $message,
     ) {
     }
 

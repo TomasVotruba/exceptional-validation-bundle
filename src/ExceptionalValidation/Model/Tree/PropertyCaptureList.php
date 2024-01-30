@@ -12,9 +12,9 @@ use Throwable;
 final class PropertyCaptureList implements CaptureTree
 {
     public function __construct(
-        private CapturableProperty $parent,
+        private readonly CapturableProperty $parent,
         /** @var iterable<CaptureTree> $captures */
-        private iterable $captures,
+        private readonly iterable $captures,
     ) {
     }
 

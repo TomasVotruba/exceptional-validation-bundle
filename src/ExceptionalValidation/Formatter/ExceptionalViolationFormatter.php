@@ -12,8 +12,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 final class ExceptionalViolationFormatter implements ExceptionViolationFormatter
 {
     public function __construct(
-        private TranslatorInterface $translator,
-        private string $translationDomain,
+        private readonly TranslatorInterface $translator,
+        private readonly string $translationDomain,
     ) {
     }
 

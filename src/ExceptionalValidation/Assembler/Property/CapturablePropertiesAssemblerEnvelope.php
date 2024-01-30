@@ -16,8 +16,8 @@ final class CapturablePropertiesAssemblerEnvelope
 {
     /** @param ReflectionClass<T> $reflectionClass */
     public function __construct(
-        private CapturableObject $captureObject,
-        private ReflectionClass $reflectionClass,
+        private readonly CapturableObject $captureObject,
+        private readonly ReflectionClass $reflectionClass,
     ) {
     }
 

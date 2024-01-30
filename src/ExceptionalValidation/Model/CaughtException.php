@@ -12,8 +12,8 @@ use Throwable;
 final class CaughtException
 {
     public function __construct(
-        private Throwable $exception,
-        private CaptureItem $capturedItem,
+        private readonly Throwable $exception,
+        private readonly CaptureItem $capturedItem,
     ) {
         $exceptionClass = $this->capturedItem->getExceptionClass();
 

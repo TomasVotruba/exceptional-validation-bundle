@@ -19,7 +19,7 @@ use function count;
 final class CapturableObjectViaReflectionAssembler implements CapturableObjectAssembler, CaptureTreeAssembler
 {
     public function __construct(
-        private CapturablePropertiesAssembler $propertiesAssembler,
+        private readonly CapturablePropertiesAssembler $propertiesAssembler,
     ) {
     }
 

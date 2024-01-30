@@ -13,8 +13,8 @@ use function sprintf;
 final class ExceptionalValidationFailedException extends RuntimeException
 {
     public function __construct(
-        private object $violatingMessage,
-        private ConstraintViolationListInterface $violations,
+        private readonly object $violatingMessage,
+        private readonly ConstraintViolationListInterface $violations,
         Throwable $previous,
     ) {
         parent::__construct(

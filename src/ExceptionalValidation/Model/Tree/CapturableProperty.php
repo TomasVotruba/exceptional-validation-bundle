@@ -11,13 +11,13 @@ use Throwable;
 /** @api */
 final class CapturableProperty implements CaptureTree
 {
-    private PropertyCaptureList $captureList;
+    private readonly PropertyCaptureList $captureList;
 
     /** @param iterable<CaptureTree> $captures */
     public function __construct(
-        private CapturableObject $parent,
-        private string $name,
-        private mixed $value,
+        private readonly CapturableObject $parent,
+        private readonly string $name,
+        private readonly mixed $value,
         iterable $captures,
     ) {
         $this->captureList = new PropertyCaptureList($this, $captures);

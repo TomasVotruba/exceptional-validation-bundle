@@ -14,7 +14,7 @@ use ReflectionProperty;
 final class CapturablePropertiesViaReflectionAssembler implements CapturablePropertiesAssembler
 {
     public function __construct(
-        private CaptureListAssembler $captureListAssembler,
+        private readonly CaptureListAssembler $captureListAssembler,
     ) {
     }
 

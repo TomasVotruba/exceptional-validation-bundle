@@ -11,8 +11,8 @@ use ReflectionProperty;
 final class CaptureListAssemblerEnvelope
 {
     public function __construct(
-        private CapturableProperty $capturableProperty,
-        private ReflectionProperty $reflectionProperty,
+        private readonly CapturableProperty $capturableProperty,
+        private readonly ReflectionProperty $reflectionProperty,
     ) {
     }
 

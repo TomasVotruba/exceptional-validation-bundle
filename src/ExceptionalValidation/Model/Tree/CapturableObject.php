@@ -12,10 +12,10 @@ use Throwable;
 final class CapturableObject implements CaptureTree
 {
     public function __construct(
-        private object $object,
-        private ?PropertyCaptureList $parent,
+        private readonly object $object,
+        private readonly ?PropertyCaptureList $parent,
         /** @var iterable<CapturableProperty> */
-        private iterable $captureProperties,
+        private readonly iterable $captureProperties,
     ) {
     }
 

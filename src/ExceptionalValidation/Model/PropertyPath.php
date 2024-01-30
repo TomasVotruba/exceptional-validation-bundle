@@ -10,7 +10,7 @@ final class PropertyPath
 {
     public function __construct(
         /** @var list<string> */
-        private array $items,
+        private readonly array $items,
     ) {
     }
 

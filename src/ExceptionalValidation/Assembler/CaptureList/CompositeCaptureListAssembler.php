@@ -9,7 +9,7 @@ final class CompositeCaptureListAssembler implements CaptureListAssembler
 {
     public function __construct(
         /** @var iterable<CaptureListAssembler> */
-        private iterable $captureListAssemblers,
+        private readonly iterable $captureListAssemblers,
     ) {
     }
 
