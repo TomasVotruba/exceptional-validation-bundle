@@ -7,11 +7,6 @@ namespace Rela589n\Rector8435\Tests;
 use PHPUnit\Framework\TestCase;
 use Rela589n\Rector8435\Foo;
 
-/**
- * @covers \Rela589n\Rector8435\Foo
- *
- * @internal
- */
 final class FooTest extends TestCase
 {
     private Foo $foo;

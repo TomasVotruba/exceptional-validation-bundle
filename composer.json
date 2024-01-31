@@ -10,10 +10,7 @@
     "autoload-dev": {
         "psr-4": {
             "Rela589n\\Rector8435\\Tests\\": "tests/"
-        },
-        "files": [
-            "tests/autoload_dev.php"
-        ]
+        }
     },
     "authors": [
         {

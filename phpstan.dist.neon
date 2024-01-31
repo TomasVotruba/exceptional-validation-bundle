@@ -1,10 +1,5 @@
 parameters:
-    level: 9
-    phpVersion: 80213
-    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
-    excludePaths:
-        analyseAndScan:
-            - vendor
-            - rector.php
-    fileExtensions:
-        - 'php'
+    level: 8
+
+    paths:
+        - src
